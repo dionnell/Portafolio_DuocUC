@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+    href="{% static 'css/flexboxgrid.css' %}"
+    type="text/css"
+    rel="stylesheet"
+  />
+    <title>{% block title %} ultima | entrega {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="text-center pb-2">Entrega</h1>
+      <div class="pt-4 pb-4">
+             
+              {% for P in pres %}
+              <li> ID Entrega: {{P.0}}</li>
+              <li> Fecha: {{P.8}}</li>
+              <li> Rut Funcionario: {{P.1}}</li>
+              ---------------------------------------------------------<br/><br/>
+              {% endfor %}
+
+              {% for R in ent %}
+              <li> ID Entrega Medicamento: {{R.0}}</li>
+              <li> Medicamento Entregado: {{R.5}}</li>
+              <li> Cantidad de Medicamento: {{R.6}}</li>
+              <li> Estado: {{R.7}}</li>
+              ---------------------------------------------------------<br/>
+          
+              
+
+            {% endfor %}
+
+      </div>
+    </div>
+
+    <br/>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+alter session set "_ORACLE_SCRIPT"=true;
+
+
+CREATE USER pharma1 IDENTIFIED BY pharma1;
+GRANT RESOURCE TO pharma1;
+GRANT CONNECT TO pharma1;
+GRANT DBA TO pharma1;

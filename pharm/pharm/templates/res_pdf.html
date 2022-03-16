@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+    href="{% static 'css/flexboxgrid.css' %}"
+    type="text/css"
+    rel="stylesheet"
+  />
+    <title>{% block title %} ultima | reserva {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="text-center pb-2">Reserva</h1>
+      <div class="pt-4 pb-4">
+              {% for R in res %}
+            
+              <li> ID Reserva: {{R.0}}</li>
+              <li> Fecha:  {{R.7}}</li>
+              <li> Rut funcionario: {{R.1}}</li><br/>
+
+              <li> ID prescripcion en reserva: {{R.2}}</li>
+              <li> Rut Médico:  {{R.3}}</li>
+              <li> Rut Paciente:  {{R.4}}</li>
+              <li> Medicamento en reserva: {{R.5}}</li>
+              <li> Cantidad de Medicamento: {{R.6}}</li>
+              
+              
+
+            {% endfor %}
+
+      </div>
+    </div>
+
+    <br/>
+  </body>
+</html>

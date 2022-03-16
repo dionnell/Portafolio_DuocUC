@@ -1,0 +1,176 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <title>{% block title %} Crear Paciente {% endblock title%}</title>
+  </head>
+
+  <body>
+    <form name="datos" method="POST">
+      {% csrf_token %}
+
+      <div class="container">
+        <div class="pb-2 pt-5 paciente">
+          <h4 class="text-center">Registrar Paciente</h4>
+        </div>
+        <div class="row">
+          <div class="col-9">
+            <input
+              placeholder="Rut Paciente sin dv"
+              class="form-control"
+              type="number"
+              name="rut_pac"
+              id="rut_pac"
+            />
+          </div>
+          <div class="col-1">
+            <label for=""> - </label>
+          </div>
+          <div class="col-2">
+            <select class="form-control" name="DV" id="DV">
+              <option value="">DV</option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="k">K</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row pt-3">
+          <div class="col-6">
+            <input
+              class="form-control"
+              placeholder="Primer Nombre"
+              type="text"
+              name="pri_nombre"
+              id="pri_nombre"
+            />
+          </div>
+          <div class="col-6">
+            <input
+              class="form-control"
+              placeholder="Segundo Nombre"
+              type="text"
+              name="seg_nombre"
+              id="seg_nombre"
+            />
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col-6">
+            <input
+              class="form-control"
+              placeholder="Apellido Paterno"
+              type="text"
+              name="ape_paterno"
+              id="ape_paterno"
+            />
+          </div>
+          <div class="col-6">
+            <input
+              class="form-control"
+              placeholder="Apellido Materno"
+              type="text"
+              name="ape_materno"
+              id="ape_materno"
+            />
+          </div>
+        </div>
+
+        <div class="row pt-3">
+          <div class="col-6">
+            <input
+              class="form-control"
+              placeholder="Edad"
+              type="number"
+              name="edad"
+              id="edad"
+            />
+          </div>
+          <div class="col-6">
+            <input
+              class="form-control"
+              placeholder="Teléfono: +569"
+              type="number"
+              name="telefono"
+              id="telefono"
+            />
+          </div>
+        </div>
+
+        <div class="row pt-3">
+          <div class="col-12">
+            <input
+              class="form-control"
+              placeholder="Email"
+              type="email"
+              name="email"
+              id="email"
+            />
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col-3">
+            <label class="col-form-label for=">Sexo</label>
+          </div>
+
+          <div class="col-3">
+            <select
+              class="form-control"
+              placeholder="Género"
+              name="sexo"
+              id="sexo"
+            >
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+          </div>
+
+          <div class="col-3">
+            <label type="text" class="col-form-label"
+              >Inscripción Familiar</label
+            >
+          </div>
+          <div class="col-3">
+            <select
+              class="form-control"
+              name="inscripcion_fam"
+              id="inscripcion_fam"
+            >
+              <option value="si">SI</option>
+              <option value="no">NO</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="text-center pt-5">
+          <input
+            class="button btn btn-dark"
+            type="submit"
+            id="boton"
+            value="Enviar"
+            on
+          />
+        </div>
+      </div>
+    </form>
+    <p class="text-center" style="color: red; font-weight: bold">{{mensaje}}</p>
+  </body>
+</html>
+{% endblock %}

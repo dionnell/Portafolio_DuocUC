@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %} Informes | Reserva {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+        <h1 class="text-center">Lista de Reservas</h1>
+      <div class="pt-4 pb-4">
+          <form name="datos" method="POST">
+              {% csrf_token %}
+    
+              <div class="">
+                <h2 class="text-center">Buscar Reserva</h2>
+                <div class="row pt-3">
+                    <label class="" for="">Rut Paciente: </label>
+                  <div class="col-6">
+                    <input
+                      class="form-control"
+                      placeholder="Rut sin Ultimo Digito"
+                      type="number"
+                      name="rut_pac"
+                      id="rut_pac"
+                    />
+                  </div>
+                </div>
+                <div class="text-center pt-5">
+                    <input
+                      class="button btn btn-dark"
+                      type="submit"
+                      id="boton"
+                      value="Buscar"
+                      on
+                      style="text-align: center"
+                    />
+                  </div>
+                </div>
+              </form><br/>
+        <table class="table table-bordered table-hover">
+          <thead class="table-dark">
+            <tr>
+              <td><h2>ID Reserva</h2></td>
+              <td><h2>Rut Paciente</h2></td>
+              <td><h2>Medicamento</h2></td>
+              <td><h2>Cantidad</h2></td>
+              <td><h2>Estado</h2></td>
+              <td><h2>Opción</h2></td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for R in reservas %}
+            <tr>
+              <td>{{ R.0}}</td>
+              <td>{{ R.1}}</td>
+              <td>{{ R.2}}</td>
+              <td>{{ R.3}}</td>
+              <td>{{ R.4}}</td>
+              <td><a class="btn" href="{% url 'reserva' R.0 %}"> Entregar </a>
+                  <a class="btn" href="{% url 'correo_reserv' R.0 %}"> Enviar Correo </a></td> 
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <br />
+  </body>
+</html>
+{% endblock %}

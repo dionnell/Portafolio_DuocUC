@@ -1,0 +1,59 @@
+CREATE OR REPLACE TRIGGER STOCK_MEDICAMENTO
+AFTER INSERT OR UPDATE OR DELETE ON DETALLE_PRESCRIPCION
+FOR EACH ROW
+DECLARE 
+    
+    V_CANTI INT;
+    V_STOCK INT;
+    V_ID INT;
+    V_TOTAL INT;
+    V_CONT_RESER int;
+    V_CONT_ENTRE INT;
+    V_DETALLE VARCHAR2(100);
+    
+BEGIN
+
+    if (inserting) then
+    
+        select CANTIDAD into V_CANTI from DETALLE_PRESCRIPCION 
+            where ID_PRES = :new.ID_PRES;
+
+        select ID_MED into V_ID from DETALLE_PRESCRIPCION 
+            where ID_PRES = :new.ID_PRES;
+
+        select STOCK into V_STOCK from MEDICAMENTO
+            where ID_MED = V_ID;
+            
+        V_TOTAL := V_STOCK - V_CANTI;   
+        
+        IF V_TOTAL >= 0 THEN
+        
+            UPDATE MEDICAMENTO
+            SET STOCK = V_TOTAL
+            WHERE ID_MED = V_ID;
+            
+        END IF;
+        
+        IF V_TOTAL <= 0 THEN 
+        
+            select 'Medicamento reservado'|| dpres.id_med || '|| cantidad: ' || dpres.cantidad ||' || paciente '|| pa.pri_nombre || ' ' || pa.seg_nombre || ' ' || 
+                    pa.ape_paterno  || ' ' || pa.ape_materno || ' ||correo: ' || pa.email || ' ||telefono: ' || pa.telefono as detalle into v_detalle  
+            from paciente pa join prescripcion pres on (pa.rut_pac = pres.rut_pac) 
+            join detalle_prescripcion dpres on (pres.id_pres = dpres.id_pres)
+            where dpres.id_pres = :new.id_pres;
+        
+            select count (id_entrega) into V_CONT_ENTRE from entrega_medicamento;
+            select count (id_reserva) into V_CONT_RESER from reserva_medicamento;
+
+            insert into reserva_medicamento values (V_CONT_RESER, V_CONT_ENTRE, v_detalle);
+            dbms_output.put_line ('se realizo una reserva' );
+        END IF;
+    
+    end if;
+            
+end;
+
+
+
+create sequence numero_id minvalue 1 start with 1 cache 1000;
+ejemplo insert into "nombre tabla" values (numero_id.nextval, "atributo de la tabla" )

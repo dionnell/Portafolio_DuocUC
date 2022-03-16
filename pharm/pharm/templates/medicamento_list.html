@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %} Lista Medicamentos {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="text-center">Stock de Medicamentos</h1>
+      <div class="pt-4 pb-4">
+          <form name="datos" method="POST">
+              {% csrf_token %}
+    
+              <div class="">
+                <h2 class="text-center">Buscar medicamento</h2>
+                <div class="row pt-3">
+                    <label class="" for="">Nombre: </label>
+                  <div class="col-6">
+                    <input
+                      class="form-control"
+                      placeholder="Nombre Medicamento"
+                      type="text"
+                      name="nombre"
+                      id="nombre"
+                    />
+                  </div>
+                </div>
+                <div class="text-center pt-5">
+                    <input
+                      class="button btn btn-dark"
+                      type="submit"
+                      id="boton"
+                      value="Buscar"
+                      on
+                      style="text-align: center"
+                    />
+                  </div>
+                </div>
+              </form><br/>
+
+        <table class="table table-bordered table-hover">
+          <thead class="table-dark">
+            <tr>
+              <td><h2>ID</h2></td>
+              <td><h2>Nombre</h2></td>
+              <td><h2>Descripción</h2></td>
+              <td><h2>Gramaje</h2></td>
+              <td><h2>Stock</h2></td>
+              <td><h2>Fabricante</h2></td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for M in medicamentos %}
+            <tr>
+              <td>{{ M.0}}</td>
+              <td>{{ M.1}}</td>
+              <td>{{ M.2}}</td>
+              <td>{{ M.3}}</td>
+              <td>{{ M.4}}</td>
+              <td>{{ M.5}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <br />
+  </body>
+</html>
+{% endblock %}

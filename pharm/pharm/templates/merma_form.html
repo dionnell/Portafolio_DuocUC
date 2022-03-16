@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    
+    <title>{% block title %} Registrar Merma {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form name="datos" method="POST">
+        {% csrf_token %}
+        <div class="">
+          <h1 class="text-center">Registrar merma</h1>
+
+          <br />
+           <div class="row pt-3">
+            <div class="col-2">
+              <label class="" for="">Medicamento </label>
+            </div>
+              <div class="col-6">
+              <select class="form-control" name="id_med" id="id_med">
+                <option value="">Seleccionar...</option>
+                {% for M in medicamentos %}
+                <option value="{{ M.0}}">{{ M.1}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-2">
+              <label class="col-form-label" for="">Cantidad </label>
+            </div>
+            <div class="col-6">
+              <input
+                class="form-control"
+                type="number"
+                name="cantidad"
+                id="cantidad"
+              />
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-2">
+              <label class="col-form-label" for="">Detalle </label>
+            </div>
+            <div class="col-6">
+              <input
+                class="form-control"
+                type="text"
+                name="detalle"
+                id="detalle"
+              />
+            </div>
+          </div>
+
+          <div class="text-center pt-5">
+            <input
+              class="btn btn-dark button"
+              type="submit"
+              id="boton"
+              value="Enviar"
+              on
+            />
+          </div>
+        </div>
+      </form>
+
+      <p class="text-center" style="color: red; font-weight: bold">
+        {{mensaje}}
+      </p>
+    </div>
+  </body>
+</html>
+{% endblock %}

@@ -1,0 +1,13 @@
+enlazar BD mysql a django
+
+https://www.youtube.com/watch?v=47H3OHdTkLw
+
+enlazar BD oracle a django
+
+https://www.youtube.com/watch?v=yeVjJUrjndc
+
+otros
+
+https://platzi.com/tutoriales/1378-python/1406-creando-registro-de-usuario-e-inicio-de-sesion-con-django/
+https://www.youtube.com/watch?v=Anxfp8R5d8w
+https://codigofacilito.com/videos/22-curso-django-decorador-login-required

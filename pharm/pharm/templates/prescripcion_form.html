@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %} Crear Prescripción {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form name="datos" method="POST">
+        {% csrf_token %}
+        <div class="">
+          <h1 class="text-center">Registrar prescripción</h1>
+          <br />
+          <div class="row pt-3">
+            <div class="col-6">
+              <label for="">Rut médico: </label
+              >{% for U in usuario %}
+              <select class="form-control" name="rut_medico" id="rut_medico">
+                  <option value="{{U.0}}"> {{U.0}} </option>
+                </select>
+             {% endfor %}
+            </div>
+            <div class="col-6">
+              <label for="">Rut paciente: </label
+              ><input
+                class="form-control"
+                placeholder="Rut Paciente sin dv"
+                type="number"
+                name="rut_pac"
+                id="rut_pac"
+              />
+            </div>
+          </div>
+
+          <div class="text-center pt-5">
+            <input
+              class="btn btn-dark button"
+              type="submit"
+              id="boton"
+              value="Enviar"
+              on
+            />
+          </div>
+        </div>
+      </form>
+
+      <p class="text-center" style="color: red; font-weight: bold">
+        {{mensaje}}
+      </p>
+      <br/>
+      <br/>
+     
+    </div>
+  </body>
+</html>
+{% endblock %}

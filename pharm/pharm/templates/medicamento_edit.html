@@ -1,0 +1,184 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="{% static 'css/flexboxgrid.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <title>{% block title %} Editar Medicamento {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      {% for F in filtro %}
+
+      <form name="datos" method="POST">
+        {% csrf_token %}
+
+        <div class="">
+          <h1 class="text-center pt-3">Editar medicamento</h1>
+
+          <div class="row pt-3">
+            <div class="col-3">
+              <label for="">ID medicamento: </label>
+            </div>
+            <div class="col-9">
+              <input
+                class="form-control"
+                type="text"
+                name="id_med"
+                id="id_med"
+                value="{{F.0}}"
+                disabled="true"
+              />
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-3">
+              <label for="">Nombre del Medicamento </label>
+            </div>
+            <div class="col-9">
+              <input
+                class="form-control"
+                type="text"
+                name="nombre"
+                id="nombre"
+                value="{{F.1}}"
+                disabled="true"
+              />
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-3">
+              <label for="">Descripción del Medicamento </label>
+            </div>
+            <div class="col-9">
+              <input
+                class="form-control"
+                type="text"
+                name="detalle"
+                id="detalle"
+                value="{{F.2}}"
+                disabled="true"
+              />
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-3">
+              <label for="">Gramaje: </label>
+            </div>
+            <div class="col-9">
+              <input
+                class="form-control"
+                type="text"
+                name="gramaje"
+                id="gramaje"
+                value="{{F.3}}"
+                disabled="true"
+              />
+            </div>
+          </div>
+          
+          <div class="row pt-3">
+            <div class="col-3">
+                <label for="">Fabricante: </label>
+            </div>
+            <div class="col-9">
+              <input
+                type="text"
+                class="form-control"
+                name="fabricante"
+                id="fabricante"
+                value="{{F.5}}"
+                disabled="true"
+              />
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-3">
+              <label for="">Componentes: </label>
+            </div>
+            <div class="col-9"> 
+              <input
+                type="text"
+                class="form-control"
+                name="componentes"
+                id="componentes"
+                value="{{F.6}}"
+                disabled="true"
+              />
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-3">
+                <label for="">tipo: </label>
+            </div>
+            <div class="col-9">
+              <input
+                type="text"
+                class="form-control"
+                name="tipo"
+                id="tipo"
+                value="{{F.7}}"
+                disabled="true"
+              />
+            </div>
+          </div>
+          <br/>
+          <div class="row pt-8">
+            <div class="col-3">
+              <label for="">Stock: </label>
+            </div>
+            <div class="col-3">
+                <select class="form-control" name="stock" id="stock">
+                    <option value="{{F.4}}"> {{F.4}} </option>
+                  </select>
+            </div>
+
+            <div class="col-2">
+              <label for="">Aumentar el stock en: </label>
+            </div>
+            <div class="col-4">
+              <input
+                class="form-control"
+                type="number"
+                name="cantidad"
+                id="cantidad"
+              />
+            </div>
+          </div>
+
+          <div class="text-center pt-5">
+            <input
+              class="button btn btn-dark"
+              type="submit"
+              id="boton"
+              value="Enviar"
+              on
+            />
+          </div>
+        </div>
+        <p class="text-center" style="color: red; font-weight: bold">
+          {{mensaje}}
+        </p>
+      </form>
+
+      {% endfor %}
+    </div>
+    <br />
+  </body>
+</html>
+{% endblock %}

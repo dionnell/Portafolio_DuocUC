@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href=" {% static 'fonts/icomoon/style.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <!-- PWA -->
+    {% load pwa %}
+
+    {% progressive_web_app_meta %}
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="pt-4">
+        <aside class="sidebar">
+          <div class="toggle">
+            <a
+              href="#"
+              class="burger js-menu-toggle"
+              data-toggle="collapse"
+              data-target="#main-navbar"
+            >
+              <span></span>
+            </a>
+          </div>
+          <div class="side-inner">
+            <div class="profile">
+              <img
+                src="{% static 'images/person_4.jpg' %}"
+                alt="Image"
+                class="img-fluid"
+              />{% if user.is_pharma%}
+              <h3 class="name">Funcionario: </h3>
+              <h3 class="name">{{user.first_name|capfirst}}</h3>
+              {% endif %} {% if user.is_medical%}
+              <h3 class="name">Médico/a: {{user.first_name|capfirst}}</h3>
+              <span class="country">Medicina General</span>
+              {% endif %}
+            </div>
+
+            <div class="nav-menu">
+              <ul>
+                {% if user.is_pharma%}
+                <li>
+                  <a href="{% url 'medicamento_create' %}"
+                    ><span class="fas fa-capsules mr-3"></span>Ingresar
+                    Medicamento</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'merma' %}"
+                    ><span class="fas fa-capsules mr-3"></span>Ingresar
+                    Merma</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'listafun' %}"
+                    ><span class="fas fa-laptop-medical mr-3"></span>Revisar
+                    stock</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'entrega' %}"
+                    ><span class="fas fa-hand-holding mr-3"></span>Registrar
+                    entrega de medicamento</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'prescripcionList' %}"
+                    ><span class="fas fa-file-medical mr-3"></span>Revisar
+                    prescripciones</a
+                  >
+                </li>
+
+                <li>
+                    <a href="{% url 'reservalist' %}"
+                      ><span class="fas fa-file-medical mr-3"></span>Revisar
+                      Reservas</a
+                    >
+                  </li>
+
+                <li>
+                  <a href="{% url 'informe_stock' %}" target="_blank"
+                    ><span class="fas fa-notes-medical mr-3"></span>Informe de
+                    stock de medicamento</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'informe_reserva' %}" target="_blank"
+                    ><span class="fas fa-book-medical mr-3"></span>Informe de
+                    reserva de medicamento</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'logout' %}"
+                    ><span class="fas fa-sign-out-alt mr-3"></span>Cerrar
+                    Sesión</a
+                  >
+                </li>
+                {% endif %} {% if user.is_medical%}
+                <li>
+                  <a href="{% url 'paciente' %}"
+                    ><span class="fas fa-user-plus mr-3"></span>Registrar
+                    Paciente</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'prescripcion' %}"
+                    ><span class="fas fa-file-medical mr-3"></span>Registrar
+                    Prescripción</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'lista' %}"
+                    ><span class="fas fa-laptop-medical mr-3"></span>Ver
+                    Medicamentos</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'logout' %}"
+                    ><span class="fas fa-sign-out-alt mr-3"></span>Cerrar
+                    Sesión</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </aside>
+
+        <main>{% block content %}{% endblock %}</main>
+      </div>
+    </div>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

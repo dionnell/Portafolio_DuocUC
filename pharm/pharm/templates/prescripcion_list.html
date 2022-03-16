@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>
+      {% block title %} Lista de Prescripciones {% endblock title %}
+    </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="text-center">Lista de Prescripciones</h1>
+      <div class="p-5">
+          <form name="datos" method="POST">
+              {% csrf_token %}
+    
+              <div class="">
+                <h2 class="text-center">Buscar Prescripcion</h2>
+                <div class="row pt-3">
+                    <label class="" for="">Rut Paciente: </label>
+                  <div class="col-6">
+                    <input
+                      class="form-control"
+                      placeholder="Rut sin Ultimo Digito"
+                      type="number"
+                      name="rut_pac"
+                      id="rut_pac"
+                    />
+                  </div>
+                </div>
+                <div class="text-center pt-5">
+                    <input
+                      class="button btn btn-dark"
+                      type="submit"
+                      id="boton"
+                      value="Buscar"
+                      on
+                      style="text-align: center"
+                    />
+                  </div>
+                </div>
+              </form><br/>
+        <table class="table table-bordered table-hover">
+          <thead class="table-dark">
+            <tr>
+              <td><h2>ID</h2></td>
+              <td><h2>Rut Médico</h2></td>
+              <td><h2>Rut Paciente</h2></td>
+              <td><h2>Cod Retiro Med</h2></td>
+              <td><h2>Medicamento</h2></td>
+              <td><h2>Descripción</h2></td>
+              <td><h2>Cantidad</h2></td>
+              <td><h2>Fecha</h2></td>
+            </tr>
+          </thead>
+          <tbody >
+            {% for P in prescripciones %}
+            <tr>
+              <td>{{ P.0}}</td>
+              <td>{{ P.1}}</td>
+              <td>{{ P.2}}</td>
+              <td>{{ P.7}}</td>
+              <td>{{ P.3}}</td>
+              <td>{{ P.4}}</td>
+              <td>{{ P.5}}</td>
+              <td>{{ P.6}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

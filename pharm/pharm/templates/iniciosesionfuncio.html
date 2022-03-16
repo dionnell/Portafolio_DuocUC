@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="{% static 'css/flexboxgrid.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link href="{% static 'css/bootstrap.css' %}" type="text/css" />
+    <title>{% block title %} inicio sesion medico {% endblock %}</title>
+  </head>
+
+  <body>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="formulario2 container-fluid">
+        <a><font color="black" size="28">Inicio Sesion </font></a>
+        <br />
+        <br />
+        <br />
+        <label>Usuario:</label>
+        <input type="text" name="username" />
+        <br />
+        <br />
+        <label>Password:</label>
+        <input type="password" name="password" />
+        <br />
+        <br />
+
+        <input class="button" type="submit" value="login" on />
+      </div>
+    </form>
+  </body>
+</html>
+{% endblock %}

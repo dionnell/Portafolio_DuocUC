@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+    <title>{% block title %} Entregar Medicamento {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form name="datos" method="POST">
+        {% csrf_token %}
+
+        <div class="m-5">
+          <h2 class="text-center pb-3">Registrar Entrega de Medicamento</h2>
+          <div class="row pt-3">
+            <div class="col-3">
+              <label for="">ID Prescripción: </label>
+            </div>
+            <div class="col-9">
+              <input
+                class="form-control"
+                type="text"
+                name="id_pres"
+                id="id_pres"
+              />
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-3">
+              <label for="">Rut Funcionario: </label>
+            </div>
+            <div class="col-9">{% for U in usuario %}
+                <select class="form-control" name="rut_func" id="rut_func">
+                    <option value="{{U.0}}"> {{U.0}} </option>
+                  </select>
+              {% endfor %}
+            </div>
+          </div>
+          
+          <div class="text-center pt-5">
+            <input
+              class="button btn btn-dark"
+              type="submit"
+              id="boton"
+              value="Enviar"
+              on
+            />
+          </div>
+        </div>
+        <p class="text-center" style="color: red; font-weight: bold">
+          {{mensaje}}
+        </p>
+      </form>
+
+      <br/>
+      <br/>
+      
+    </div>
+
+  </body>
+</html>
+{% endblock %}

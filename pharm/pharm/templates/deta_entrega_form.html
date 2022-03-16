@@ -1,0 +1,93 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %} Crear Detalle de la Entrega {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form name="datos" method="POST">
+        {% csrf_token %}
+        <div class="">
+          <h1 class="text-center">Registrar Entrega</h1>
+          <br />
+          <div class="row pt-3">
+            <div class="col-6">
+              <label for="">ID Entrega: </label
+              >{% for P in pres %}
+              <select class="form-control" name="id_entrega" id="id_entrega">
+                  <option value="{{P.0}}"> {{P.0}} </option>
+                </select>
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-6">
+              <label for="">ID prescripcion: </label
+              >
+              <input
+                class="form-control"
+                type="text"
+                name="pres"
+                id="pres"
+                value="{{P.2}}"
+                disabled= "True"
+              />
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            
+            <div class="col-6">
+              <label for="">Cod de entrega de producto: </label
+              ><input
+                class="form-control"
+                type="number"
+                name="id_det_ent"
+                id="id_det_ent"
+              />
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-6">
+              <label class="" for="">Retiro de Medicamento </label>
+            
+              <select class="form-control" name="retiro" id="retiro">
+                <option value="Cesfam">Cesfam</option>
+                <option value="Otro" >Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="text-center pt-5">
+            <input
+              class="btn btn-dark button"
+              type="submit"
+              id="boton"
+              value="Enviar"
+              on
+            />
+          </div>
+        </div>
+      </form>
+
+      <p class="text-center" style="color: red; font-weight: bold">
+        {{mensaje}}
+      </p>
+      <br/>
+      <br/>
+      <a href="{% url 'pres_pdf' P.2 %}"  target="_blank">Revisar prescripción</a>
+      <br/>
+      <a href="{% url 'ent_pdf' P.0 %}" target="_blank">Revisar Entrega</a><br/><br/>
+    </div>{% endfor %}
+  </body>
+</html>
+{% endblock %}

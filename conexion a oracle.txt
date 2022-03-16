@@ -1,0 +1,39 @@
+poner esto en la database de django 
+
+'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': '192.168.100.5:1521/XE',
+        'USER': 'pharma1',
+        'PASSWORD': 'pharma1',
+        'TEST': {
+            'USER': 'default_test',
+            'TBLSPACE': 'default_test_tbls',
+            'TBLSPACE_TMP': 'default_test_tbls_tmp',
+        }
+    }
+
+en la terminal 
+
+pip install cx_Oracle
+pip install django-pwa
+pip install xhtml2pdf
+PIP install python-decouple
+
+
+python .\manage.py inspectdb > .\database\models.py
+python .\manage.py migrate
+
+poner en el admin.py
+
+from .models import DetallePrescripcion, EntregaMedicamento, Funcionario, Medicamento, Medico, Paciente, Prescripcion, ReservaMedicamento
+# Register your models here.
+
+
+admin.site.register(DetallePrescripcion)
+admin.site.register(EntregaMedicamento)
+admin.site.register(Funcionario)
+admin.site.register(Medicamento)
+admin.site.register(Medico)
+admin.site.register(Paciente)
+admin.site.register(Prescripcion)
+admin.site.register(ReservaMedicamento)

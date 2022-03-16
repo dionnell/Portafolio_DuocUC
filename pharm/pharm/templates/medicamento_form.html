@@ -1,0 +1,139 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+    <title>{% block title %} Crear Medicamento {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="p-4">
+        <form name="datos" method="POST">
+          {% csrf_token %}
+
+          <div class="">
+            <h2 class="text-center">Registrar medicamento</h2><br/>
+            <div class="row pt-3">
+                <label class="" for="">Nombre: </label>
+              <div class="col-6">
+                <input
+                  class="form-control"
+                  placeholder="Nombre Medicamento"
+                  type="text"
+                  name="nombre"
+                  id="nombre"
+                />
+              </div>
+            </div>
+            <div class="row pt-3">
+                <label class="" for="">Detalles: </label>
+              <div class="col-6">
+                <input
+                  placeholder="Detalle"
+                  class="form-control"
+                  type="text"
+                  name="detalle"
+                  id="detalle"
+                />
+              </div>
+            </div>
+            <div class="row pt-3">
+                <label class="" for="">Gramaje:  </label>
+              <div class="col-6">
+                <input
+                  placeholder="Gramos"
+                  class="form-control"
+                  type="text"
+                  name="gramaje"
+                  id="gramaje"
+                />
+              </div>
+            </div>
+
+            <div class="row pt-3">
+                <label class="" for="">Cantidad: </label>
+              <div class="col-6">
+                <input
+                  placeholder="Cantidad"
+                  class="form-control"
+                  type="number"
+                  name="stock"
+                  id="stock"
+                />
+              </div>
+            </div>
+
+            <div class="row pt-3">
+                <label class="" for="">Fabricante: </label>
+              <div class="col-6">
+                  <select class="form-control" name="fabricante" id="fabricante">
+                      <option value="">Seleccionar...</option>
+                      <option value="Laboratorio Chile">Laboratorio Chile</option>
+                      <option value="Laboratorio Valma">Laboratorio Valma</option>
+                      <option value="MintLab">MintLab</option>
+                      <option value="Laboratorios Andrómaco">Laboratorios Andrómaco</option>
+                      <option value="Asilfa A G">Asilfa A G</option>
+                      <option value="Ferrer Chile S A">Ferrer Chile S A</option>
+                      <option value="Allergan Laboratorios">Allergan Laboratorios</option>
+                      <option value="Laboratorios Kampar S A">Laboratorios Kampar S A</option>
+                      <option value="Laboratorios Saval S.A.">Laboratorios Saval S.A.</option>
+                    </select>
+                
+              </div>
+            </div>
+
+            <div class="row pt-3">
+                <label class="" for="">Componentes:  </label>
+              <div class="col-6">
+                <input
+                  placeholder="Componentes de Medicamento"
+                  type="text"
+                  class="form-control"
+                  name="componentes"
+                  id="componentes"
+                />
+              </div>
+            </div>
+
+            <div class="row pt-3">
+                <label class="" for="">Tipo: </label>
+              <div class="col-6">
+                  <select class="form-control" name="tipo" id="tipo">
+                      <option value="">Seleccionar...</option>
+                      <option value="Vía oral">Vía oral</option>
+                      <option value="Inyectables">Inyectables</option>
+                      <option value="Perfusión">Perfusión</option>
+                      <option value="Antisépticos">Antisépticos</option>
+                      <option value="Desinfectantes">Desinfectantes</option>
+                    </select>
+              </div>
+            </div>
+
+            <div class="text-center pt-5">
+              <input
+                class="button btn btn-dark"
+                type="submit"
+                id="boton"
+                value="Enviar"
+                on
+                style="text-align: center"
+              />
+            </div>
+            <p class="text-center" style="color: red; font-weight: bold">
+              {{mensaje}}
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

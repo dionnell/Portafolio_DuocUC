@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="{% static 'css/flexboxgrid.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <title>{% block title %} Informe | Stock{% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <h1 class="text-center pb-2">Merma</h1>
+
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <td><h2>ID</h2></td>
+            <td><h2>Medicamento</h2></td>
+            <td><h2>Cantidad</h2></td>
+            <td><h2>Detalle</h2></td>
+            <td><h2>Fecha de Registro</h2></td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for N in mermas %}
+          <tr>
+            <td>{{ N.0}}</td>
+            <td>{{ N.1}}</td>
+            <td>{{ N.2}}</td>
+            <td>{{ N.3}}</td>
+            <td>{{ N.4}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br><br>
+
+      <div class="pt-4 pb-4">
+          <h1 class="text-center pb-2">Medicamentos</h1>
+        <table class="table table-bordered table-hover">
+          <thead class="table-dark">
+            <tr>
+              <td><h2>ID</h2></td>
+              <td><h2>Nombre</h2></td>
+              <td><h2>Detalle</h2></td>
+              <td><h2>Gramaje</h2></td>
+              <td><h2>Stock</h2></td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for M in medicamentos %}
+            <tr>
+              <td>{{ M.0}}</td>
+              <td>{{ M.1}}</td>
+              <td>{{ M.2}}</td>
+              <td>{{ M.3}}</td>
+              <td>{{ M.4}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br />
+  </body>
+</html>

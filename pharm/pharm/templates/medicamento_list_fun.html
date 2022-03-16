@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %} Lista de Medicamentos {% endblock %}</title>
+  </head>
+
+  <body>
+
+    
+    <div class="container">
+      <div class="pt-5 pb-5">
+        <h1 class="text-center pb-2">Stock de Medicamentos</h1>
+        <form name="datos" method="POST">
+            {% csrf_token %}
+  
+            <div class="">
+              <h2 class="text-center">Buscar medicamento</h2>
+              <div class="row pt-3">
+                  <label class="" for="">Nombre: </label>
+                <div class="col-6">
+                  <input
+                    class="form-control"
+                    placeholder="Nombre Medicamento"
+                    type="text"
+                    name="nombre"
+                    id="nombre"
+                  />
+                </div>
+              </div>
+              <div class="text-center pt-5">
+                  <input
+                    class="button btn btn-dark"
+                    type="submit"
+                    id="boton"
+                    value="Buscar"
+                    on
+                    style="text-align: center"
+                  />
+                </div>
+              </div>
+            </form><br/>
+
+        <table class="table table-bordered table-hover">
+          <thead class="table-dark">
+            <tr>
+              <td><h2>ID</h2></td>
+              <td><h2>Nombre</h2></td>
+              <td><h2>Descripción</h2></td>
+              <td><h2>Gramaje</h2></td>
+              <td><h2>Stock</h2></td>
+              <td><h2><center>Opción</center></h2></td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for M in medicamentos %}
+            <tr>
+              <td>{{ M.0}}</td>
+              <td>{{ M.1}}</td>
+              <td>{{ M.2}}</td>
+              <td>{{ M.3}}</td>
+              <td>{{ M.4}}</td>
+              <td><a class="btn" href="{% url 'editar' M.0 %}"> Aumentar Stock </a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <div class="pt-5 pb-5">
+        <h1 class="text-center pb-2">Mermas de Medicamentos</h1>
+
+        <table class="table table-bordered table-hover">
+          <thead class="table-dark">
+            <tr>
+              <td><h2>ID</h2></td>
+              <td><h2>Medicamento</h2></td>
+              <td><h2>Cantidad</h2></td>
+              <td><h2>Detalle</h2></td>
+              <td><h2>Fecha de Registro</h2></td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for N in mermas %}
+            <tr>
+              <td>{{ N.0}}</td>
+              <td>{{ N.1}}</td>
+              <td>{{ N.2}}</td>
+              <td>{{ N.3}}</td>
+              <td>{{ N.4}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </body>
+</html>
+{% endblock %}

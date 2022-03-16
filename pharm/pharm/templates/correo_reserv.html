@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="{% static 'css/flexboxgrid.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <title>{% block title %} Enviar Correo {% endblock title %}</title>
+  </head>
+
+  <body>
+    <div class="container">
+      {% for F in filtro %}
+
+      <form name="datos" method="POST">
+        {% csrf_token %}
+
+        <div class="">
+          <h1 class="text-center pt-3">Enviar Correo</h1>
+
+          <div class="row pt-3">
+            <div class="col-3">
+              <label for="">Desea enviar un correo a:  </label>
+            </div>
+            <div class="col-9">
+                <select class="form-control" name="mail" id="mail">
+                    <option value="{{F.0}}"> {{F.0}} </option>
+                  </select>
+              
+            </div>
+          </div>
+
+          <div class="text-center pt-5">
+            <input
+              class="button btn btn-dark"
+              type="submit"
+              id="boton"
+              value="Enviar"
+              on
+            />
+          </div>
+        </div>
+        </form>
+
+      {% endfor %}
+    </div>
+    <br />
+  </body>
+</html>
+{% endblock %}
